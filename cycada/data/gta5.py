@@ -44,7 +44,13 @@ class GTA5(data.Dataset):
     def collect_ids(self):
         splits = scipy.io.loadmat(os.path.join(self.root, 'split.mat'))
         ids = splits['{}Ids'.format(self.split)].squeeze()
-        return ids
+        # only collect ids for which images actually exist
+        ids_actual = []
+        for id in ids:
+            pth = self.img_path(id)
+            if os.path.exists(pth):
+                ids_actual.append(id)
+        return ids_actual
 
     def img_path(self, id):
         filename = '{:05d}.png'.format(id)

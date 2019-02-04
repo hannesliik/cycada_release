@@ -107,6 +107,7 @@ def main(output, dataset, datadir, batch_size, lr, step, iterations,
         collate_fn = lambda batch: augment_collate(batch, crop=crop_size, flip=True)
     else:
         collate_fn = torch.utils.data.dataloader.default_collate
+    print(datasets)
     loaders = [torch.utils.data.DataLoader(dataset, batch_size=batch_size,
                                            shuffle=True, num_workers=2,
                                            collate_fn=collate_fn,
@@ -128,7 +129,7 @@ def main(output, dataset, datadir, batch_size, lr, step, iterations,
         
         # backward pass
         loss.backward()
-        losses.append(loss.data[0])
+        losses.append(loss.item())
         
         # step gradients
         opt.step()

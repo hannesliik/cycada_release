@@ -1,7 +1,8 @@
 scipy
 torchvision
 tensorboardX
-tensorflow
+#tensorflow
+torch
 click
 tqdm
 requests

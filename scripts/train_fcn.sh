@@ -1,12 +1,13 @@
-gpu=1
-data=cityscapes 
-data2=cyclegta5
-model=drn42
+gpu=0
+data=gta5
+#data=cityscapes
+#data2=cyclegta5
+model=drn26
 
 
 crop=768
-datadir=/x
-batch=2
+datadir=~/datasets/cycada_data
+batch=1
 iterations=100000
 lr=1e-3
 momentum=0.99
