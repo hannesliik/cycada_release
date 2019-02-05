@@ -147,4 +147,8 @@ def get_dataset(name, rootdir, dset, image_size, num_channels, download=True):
             target_transform=target_transform, download=download)
 
 def get_fcn_dataset(name, rootdir, **kwargs):
+    if name not in dataset_obj:
+        dir = os.path.join(rootdir, name)
+        print(f"Dataset {name} is not registered, using default structure in '{dir}'")
+        return dataset_obj["default"](dir, **kwargs)
     return dataset_obj[name](rootdir, **kwargs)
